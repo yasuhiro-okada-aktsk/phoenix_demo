@@ -1,66 +1,57 @@
-var React = window.React = require('react'),
-    Timer = require("./ui/Timer"),
-    mountNode = document.getElementById("content");
+//import React from 'react'
+//import { Router, Route, Link } from 'react-router'
 
-var SignUpBox = React.createClass({
-    handleSubmit: function (e) {
-        e.preventDefault();
-        var name = React.findDOMNode(this.refs.name).value.trim();
-        var email = React.findDOMNode(this.refs.email).value.trim();
-        var password = React.findDOMNode(this.refs.password).value.trim();
-        if (!name || !email || !password) {
-            alert('empty!')
-            return;
-        }
-        this.signUp({user: {name: name, email: email, password: password}});
-        //React.findDOMNode(this.refs.name).value = '';
-        //React.findDOMNode(this.refs.email).value = '';
-        //React.findDOMNode(this.refs.password).value = '';
-        return;
-    },
-    signUp: function (user) {
-        $.ajax({
-            url: this.props.url,
-            dataType: 'json',
-            type: 'POST',
-            data: user,
-            success: function (data) {
-                this.setState({data: data});
-                alert('success')
-            }.bind(this),
-            error: function (xhr, status, err) {
-                console.error(this.props.url, status, err.toString());
-                alert('error')
-            }.bind(this)
-        });
-    },
+var React = window.React = require('react');
+var Router = require('react-router');
+var Link = Router.Link;
+var Route = Router.Route;
+var DefaultRoute = Router.DefaultRoute;
+var RouteHandler = Router.RouteHandler;
+
+//var Timer = require("./ui/Timer");
+//var mountNode = document.getElementById("content");
+var SignUp = require("./ui/sign_up")
+
+
+var App = React.createClass({
     render: function () {
         return (
-            <form className="signUpForm" onSubmit={this.handleSubmit}>
-                <div className="form-group">
-                    <label>Name</label>
-                    <input type="text" placeholder="Your name" className="form-control" ref="name"/>
+            <div>
+                <div className="header">
+                    <ul className="nav nav-pills pull-right">
+                        <li><Link to="app">Dashboard</Link></li>
+                        <li><Link to="sign_up">Sign up</Link></li>
+                    </ul>
+                    <h3 className="text-muted">phoenix_demo_web</h3>
                 </div>
-
-                <div className="form-group">
-                    <label>Email</label>
-                    <input type="text" placeholder="Your email" className="form-control" ref="email"/>
+                <div className="jumbotron" id="app">
+                    <h1>Phoenix Demo</h1>
                 </div>
-
-                <div className="form-group">
-                    <label>Password</label>
-                    <input type="password" placeholder="Your password" className="form-control" ref="password"/>
+                <div>
+                    <RouteHandler/>
                 </div>
-
-                <div className="form-group">
-                    <input type="submit" value="Post" className="btn btn-primary"/>
-                </div>
-            </form>
+            </div>
         );
     }
 });
 
-React.render(
-    <SignUpBox url="/api/v1/users"/>,
-    mountNode
+var Dashboard = React.createClass({
+    render: function () {
+        return (
+            <div>
+            </div>
+        );
+    }
+});
+
+var routes = (
+    <Route name="app" path="/" handler={App}>
+        <Route name="sign_up" handler={SignUp}/>
+        <DefaultRoute handler={Dashboard}/>
+    </Route>
 );
+
+Router.run(routes, function (Handler) {
+    React.render(<Handler/>, document.getElementById("container"));
+});
+
