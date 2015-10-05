@@ -2,7 +2,7 @@ defmodule PhoenixDemoApp.Api.V1.UserControllerTest do
   use PhoenixDemoApp.ConnCase
 
   alias PhoenixDemoApp.UserAuth
-  @valid_attrs %{email: "some content", encrypted_password: "some content", name: "some content"}
+  @valid_attrs %{email: "some content", password: "some content", name: "some content"}
   @invalid_attrs %{}
 
   setup do
@@ -29,26 +29,26 @@ defmodule PhoenixDemoApp.Api.V1.UserControllerTest do
   end
 
   test "creates and renders resource when data is valid", %{conn: conn} do
-    conn = post conn, user_path(conn, :create), user_auth: @valid_attrs
+    conn = post conn, user_path(conn, :create), user: @valid_attrs
     assert json_response(conn, 201)["id"]
-    assert Repo.get_by(UserAuth, @valid_attrs)
+    assert Repo.get_by(UserAuth, Map.delete(@valid_attrs, :password))
   end
 
   test "does not create resource and renders errors when data is invalid", %{conn: conn} do
-    conn = post conn, user_path(conn, :create), user_auth: @invalid_attrs
+    conn = post conn, user_path(conn, :create), user: @invalid_attrs
     assert json_response(conn, 422)["errors"] != %{}
   end
 
   test "updates and renders chosen resource when data is valid", %{conn: conn} do
     user_auth = Repo.insert! %UserAuth{}
-    conn = put conn, user_path(conn, :update, user_auth), user_auth: @valid_attrs
+    conn = put conn, user_path(conn, :update, user_auth), user: @valid_attrs
     assert json_response(conn, 200)["id"]
-    assert Repo.get_by(UserAuth, @valid_attrs)
+    assert Repo.get_by(UserAuth, Map.delete(@valid_attrs, :password))
   end
 
   test "does not update chosen resource and renders errors when data is invalid", %{conn: conn} do
     user_auth = Repo.insert! %UserAuth{}
-    conn = put conn, user_path(conn, :update, user_auth), user_auth: @invalid_attrs
+    conn = put conn, user_path(conn, :update, user_auth), user: @invalid_attrs
     assert json_response(conn, 422)["errors"] != %{}
   end
 

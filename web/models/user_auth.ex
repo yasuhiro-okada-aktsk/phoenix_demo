@@ -5,11 +5,12 @@ defmodule PhoenixDemoApp.UserAuth do
     field :name, :string
     field :email, :string
     field :encrypted_password, :string
+    field :password, :string, virtual: true
 
     timestamps
   end
 
-  @required_fields ~w(name email encrypted_password)
+  @required_fields ~w(name email password)
   @optional_fields ~w()
 
   @doc """

@@ -3,14 +3,14 @@ defmodule PhoenixDemoApp.Api.V1.UserController do
 
   alias PhoenixDemoApp.UserAuth
 
-  plug :scrub_params, "user_auth" when action in [:create, :update]
+  plug :scrub_params, "user" when action in [:create, :update]
 
   def index(conn, _params) do
     user_auths = Repo.all(UserAuth)
     render(conn, "index.json", user_auths: user_auths)
   end
 
-  def create(conn, %{"user_auth" => user_auth_params}) do
+  def create(conn, %{"user" => user_auth_params}) do
     changeset = UserAuth.changeset(%UserAuth{}, user_auth_params)
 
     case Repo.insert(changeset) do
@@ -31,7 +31,7 @@ defmodule PhoenixDemoApp.Api.V1.UserController do
     render(conn, "show.json", user_auth: user_auth)
   end
 
-  def update(conn, %{"id" => id, "user_auth" => user_auth_params}) do
+  def update(conn, %{"id" => id, "user" => user_auth_params}) do
     user_auth = Repo.get!(UserAuth, id)
     changeset = UserAuth.changeset(user_auth, user_auth_params)
 
