@@ -194,10 +194,10 @@ gulp.task('watch', ['html', 'fonts', 'bundle'], function() {
 
     gulp.watch(['app/styles/**/*.scss', 'app/styles/**/*.css'], ['styles', 'scripts', reload]);
 
-    
+
         // Watch .jade files
         gulp.watch('app/template/**/*.jade', ['jade', 'html', reload]);
-    
+
 
     // Watch image files
     gulp.watch('app/images/**/*', reload);
@@ -213,3 +213,24 @@ gulp.task('build', ['html', 'buildBundle', 'images', 'fonts', 'extras'], functio
 
 // Default task
 gulp.task('default', ['clean', 'build'  , 'jest'  ]);
+
+var connect = require('gulp-connect');
+var proxy = require('proxy-middleware');
+var url = require('url');
+
+gulp.task('connect', function() {
+    connect.server({
+        root: ['dist'],
+        port: 9000,
+        livereload: true,
+        middleware: function(connect, o) {
+            return [ (function() {
+                var options = url.parse('http://localhost:4000/api');
+                options.route = '/api';
+                return proxy(options);
+            })() ];
+        }
+    });
+});
+
+gulp.task('default', ['connect']);

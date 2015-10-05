@@ -1,44 +1,66 @@
-
 var React = window.React = require('react'),
     Timer = require("./ui/Timer"),
-    mountNode = document.getElementById("app");
+    mountNode = document.getElementById("content");
 
-var TodoList = React.createClass({
-  render: function() {
-    var createItem = function(itemText) {
-      return <li>{itemText}</li>;
-    };
-    return <ul>{this.props.items.map(createItem)}</ul>;
-  }
+var SignUpBox = React.createClass({
+    handleSubmit: function (e) {
+        e.preventDefault();
+        var name = React.findDOMNode(this.refs.name).value.trim();
+        var email = React.findDOMNode(this.refs.email).value.trim();
+        var password = React.findDOMNode(this.refs.password).value.trim();
+        if (!name || !email || !password) {
+            alert('empty!')
+            return;
+        }
+        this.signUp({user: {name: name, email: email, password: password}});
+        //React.findDOMNode(this.refs.name).value = '';
+        //React.findDOMNode(this.refs.email).value = '';
+        //React.findDOMNode(this.refs.password).value = '';
+        return;
+    },
+    signUp: function (user) {
+        $.ajax({
+            url: this.props.url,
+            dataType: 'json',
+            type: 'POST',
+            data: user,
+            success: function (data) {
+                this.setState({data: data});
+                alert('success')
+            }.bind(this),
+            error: function (xhr, status, err) {
+                console.error(this.props.url, status, err.toString());
+                alert('error')
+            }.bind(this)
+        });
+    },
+    render: function () {
+        return (
+            <form className="signUpForm" onSubmit={this.handleSubmit}>
+                <div className="form-group">
+                    <label>Name</label>
+                    <input type="text" placeholder="Your name" className="form-control" ref="name"/>
+                </div>
+
+                <div className="form-group">
+                    <label>Email</label>
+                    <input type="text" placeholder="Your email" className="form-control" ref="email"/>
+                </div>
+
+                <div className="form-group">
+                    <label>Password</label>
+                    <input type="password" placeholder="Your password" className="form-control" ref="password"/>
+                </div>
+
+                <div className="form-group">
+                    <input type="submit" value="Post" className="btn btn-primary"/>
+                </div>
+            </form>
+        );
+    }
 });
-var TodoApp = React.createClass({
-  getInitialState: function() {
-    return {items: [], text: ''};
-  },
-  onChange: function(e) {
-    this.setState({text: e.target.value});
-  },
-  handleSubmit: function(e) {
-    e.preventDefault();
-    var nextItems = this.state.items.concat([this.state.text]);
-    var nextText = '';
-    this.setState({items: nextItems, text: nextText});
-  },
-  render: function() {
-    return (
-      <div>
-        <h3>TODO</h3>
-        <TodoList items={this.state.items} />
-        <form onSubmit={this.handleSubmit}>
-          <input onChange={this.onChange} value={this.state.text} />
-          <button>{'Add #' + (this.state.items.length + 1)}</button>
-        </form>
-        <Timer />
-      </div>
-    );
-  }
-});
 
-
-React.render(<TodoApp />, mountNode);
-
+React.render(
+    <SignUpBox url="/api/v1/users"/>,
+    mountNode
+);
