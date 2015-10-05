@@ -19,6 +19,13 @@ defmodule PhoenixDemoApp.Router do
     get "/", PageController, :index
   end
 
+  scope "/api/v1", PhoenixDemoApp.Api.V1 do
+    pipe_through [:api]
+
+    resources "/users", UserController
+  end
+
+
   # Other scopes may use custom stacks.
   # scope "/api", PhoenixDemoApp do
   #   pipe_through :api
