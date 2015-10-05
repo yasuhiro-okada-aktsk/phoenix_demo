@@ -11,16 +11,43 @@ var RouteHandler = Router.RouteHandler;
 //var Timer = require("./ui/Timer");
 //var mountNode = document.getElementById("content");
 var SignUp = require("./ui/sign_up")
+var SignIn = require("./ui/sign_in")
+var SignOut = require("./ui/sign_out")
 
+var Auth = require("./controller/auth")
 
 var App = React.createClass({
+    getInitialState() {
+        return {
+            loggedIn: Auth.loggedIn()
+        }
+    },
+    updateAuth(loggedIn) {
+        this.setState({
+            loggedIn: loggedIn
+        });
+        console.log(loggedIn)
+    },
+    componentWillMount() {
+        Auth.onChange = this.updateAuth
+        Auth.login()
+    },
     render: function () {
         return (
             <div>
                 <div className="header">
                     <ul className="nav nav-pills pull-right">
                         <li><Link to="app">Dashboard</Link></li>
-                        <li><Link to="sign_up">Sign up</Link></li>
+                        {this.state.loggedIn ? (
+                            <li><Link to="sign_out">Sign out</Link></li>
+                        ) : (
+                            <li><Link to="sign_in">Sign in</Link></li>
+                        )}
+                        {this.state.loggedIn ? (
+                            <div></div>
+                        ):(
+                            <li><Link to="sign_up">Sign up</Link></li>
+                        )}
                     </ul>
                     <h3 className="text-muted">phoenix_demo_web</h3>
                 </div>
@@ -46,7 +73,9 @@ var Dashboard = React.createClass({
 
 var routes = (
     <Route name="app" path="/" handler={App}>
-        <Route name="sign_up" handler={SignUp}/>
+        <Route name="sign_up" handler={SignUp} />
+        <Route name="sign_out" handler={SignOut} />
+        <Route name="sign_in" handler={SignIn}/>
         <DefaultRoute handler={Dashboard}/>
     </Route>
 );

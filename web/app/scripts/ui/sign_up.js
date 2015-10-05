@@ -1,4 +1,3 @@
-
 var SignUpBox = React.createClass({
     handleSubmit: function (e) {
         e.preventDefault();
