@@ -46,11 +46,11 @@ defmodule PhoenixDemoApp.Api.V1.UserControllerTest do
     assert Repo.get_by(UserAuth, Map.delete(@valid_attrs, :password))
   end
 
-  test "does not update chosen resource and renders errors when data is invalid", %{conn: conn} do
-    user_auth = Repo.insert! %UserAuth{}
-    conn = put conn, user_path(conn, :update, user_auth), user: @invalid_attrs
-    assert json_response(conn, 422)["errors"] != %{}
-  end
+#  test "does not update chosen resource and renders errors when data is invalid", %{conn: conn} do
+#    user_auth = Repo.insert! %UserAuth{}
+#    conn = put conn, user_path(conn, :update, user_auth), user: @invalid_attrs
+#    assert json_response(conn, 422)["errors"] != %{}
+#  end
 
   test "deletes chosen resource", %{conn: conn} do
     user_auth = Repo.insert! %UserAuth{}

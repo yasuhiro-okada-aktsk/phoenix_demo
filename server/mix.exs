@@ -35,6 +35,8 @@ defmodule PhoenixDemoApp.Mixfile do
      {:mariaex, ">= 0.0.0"},
      {:phoenix_html, "~> 2.1"},
      {:phoenix_live_reload, "~> 1.0", only: :dev},
+     {:guardian, "~> 0.6.2"},
+     {:comeonin, "~> 1.2.2"},
      {:cowboy, "~> 1.0"}]
   end
 

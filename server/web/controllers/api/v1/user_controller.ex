@@ -11,7 +11,7 @@ defmodule PhoenixDemoApp.Api.V1.UserController do
   end
 
   def create(conn, %{"user" => user_auth_params}) do
-    changeset = UserAuth.changeset(%UserAuth{}, user_auth_params)
+    changeset = UserAuth.create_changeset(%UserAuth{}, user_auth_params)
 
     case Repo.insert(changeset) do
       {:ok, user_auth} ->
@@ -33,7 +33,7 @@ defmodule PhoenixDemoApp.Api.V1.UserController do
 
   def update(conn, %{"id" => id, "user" => user_auth_params}) do
     user_auth = Repo.get!(UserAuth, id)
-    changeset = UserAuth.changeset(user_auth, user_auth_params)
+    changeset = UserAuth.update_changeset(user_auth, user_auth_params)
 
     case Repo.update(changeset) do
       {:ok, user_auth} ->

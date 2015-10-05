@@ -17,13 +17,14 @@ var SignUpBox = React.createClass({
     },
     signUp: function (user) {
         $.ajax({
-            url: this.props.url,
+            url: "/api/v1/users",
             dataType: 'json',
             type: 'POST',
             data: user,
             success: function (data) {
                 this.setState({data: data});
-                alert('success')
+                alert('success');
+                $(location).attr('href', "/")
             }.bind(this),
             error: function (xhr, status, err) {
                 console.error(this.props.url, status, err.toString());
