@@ -3,6 +3,9 @@ defmodule PhoenixDemoApp.Api.V1.UserController do
 
   alias PhoenixDemoApp.UserAuth
 
+  plug Guardian.Plug.EnsureAuthenticated,
+      %{ on_failure: { PhoenixDemoApp.Api.V1.SessionController, :unauthenticated_api } } when action in [:index]
+
   plug :scrub_params, "user" when action in [:create, :update]
 
   def index(conn, _params) do

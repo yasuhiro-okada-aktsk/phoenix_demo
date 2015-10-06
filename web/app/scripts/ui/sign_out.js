@@ -1,5 +1,3 @@
-var Auth = require("../controller/auth")
-
 module.exports = React.createClass({
 
     componentDidMount() {

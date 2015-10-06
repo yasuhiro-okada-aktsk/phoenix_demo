@@ -1,5 +1,3 @@
-var Auth = require("../controller/auth")
-
 var SignIn = React.createClass({
     handleSubmit: function (e) {
         e.preventDefault();
@@ -18,7 +16,6 @@ var SignIn = React.createClass({
                 return this.setState({error: true})
             }
 
-            alert("success!")
             $(location).attr('href', "/")
 
             /*

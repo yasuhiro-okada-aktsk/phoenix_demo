@@ -9,12 +9,12 @@ var DefaultRoute = Router.DefaultRoute;
 var RouteHandler = Router.RouteHandler;
 
 //var Timer = require("./ui/Timer");
-//var mountNode = document.getElementById("content");
 var SignUp = require("./ui/sign_up")
 var SignIn = require("./ui/sign_in")
 var SignOut = require("./ui/sign_out")
+var UserList = require("./ui/user_list")
 
-var Auth = require("./controller/auth")
+var Auth = window.Auth = require("./auth")
 
 var App = React.createClass({
     getInitialState() {
@@ -38,6 +38,7 @@ var App = React.createClass({
                 <div className="header">
                     <ul className="nav nav-pills pull-right">
                         <li><Link to="app">Dashboard</Link></li>
+                        <li><Link to="user_list">User List</Link></li>
                         {this.state.loggedIn ? (
                             <li><Link to="sign_out">Sign out</Link></li>
                         ) : (
@@ -76,6 +77,7 @@ var routes = (
         <Route name="sign_up" handler={SignUp} />
         <Route name="sign_out" handler={SignOut} />
         <Route name="sign_in" handler={SignIn}/>
+        <Route name="user_list" handler={UserList}/>
         <DefaultRoute handler={Dashboard}/>
     </Route>
 );

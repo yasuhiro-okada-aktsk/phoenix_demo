@@ -7,6 +7,10 @@ module.exports = {
             return
         }
 
+        if (!user) {
+            return;
+        }
+
         $.ajax({
             url: "/api/v1/login",
             dataType: 'json',
@@ -16,7 +20,6 @@ module.exports = {
                 localStorage.token = data.token
                 if (cb) cb(true)
                 this.onChange(true)
-                alert('success');
                 $(location).attr('href', "/")
             }.bind(this),
             error: function (xhr, status, err) {
@@ -42,5 +45,6 @@ module.exports = {
         return !!localStorage.token
     },
 
-    onChange() {}
+    onChange() {
+    }
 }
