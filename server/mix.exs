@@ -19,7 +19,7 @@ defmodule PhoenixDemoApp.Mixfile do
   def application do
     [mod: {PhoenixDemoApp, []},
      applications: [:phoenix, :phoenix_html, :cowboy, :logger,
-                    :phoenix_ecto, :mariaex]]
+                    :phoenix_ecto, :mariaex, :httpoison]]
   end
 
   # Specifies which paths to compile per environment.
@@ -37,6 +37,8 @@ defmodule PhoenixDemoApp.Mixfile do
      {:phoenix_live_reload, "~> 1.0", only: :dev},
      {:guardian, "~> 0.6.2"},
      {:comeonin, "~> 1.2.2"},
+     {:httpoison, "~> 0.7.4"},
+     {:feeder_ex, ">= 0.0.0"},
      {:cowboy, "~> 1.0"}]
   end
 

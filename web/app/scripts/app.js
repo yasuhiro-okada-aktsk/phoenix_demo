@@ -1,7 +1,8 @@
 var React = window.React = require('react');
-var ReactRouter = require('react-router')
-var Router = ReactRouter.Router
-var Route = ReactRouter.Route
+var ReactRouter = require('react-router');
+var Router = ReactRouter.Router;
+var Route = ReactRouter.Route;
+var IndexRoute = ReactRouter.IndexRoute;
 
 var App = require("./components/DemoApp.react.js");
 var SignUp = require("./components/SignUp.react.js");
@@ -13,6 +14,7 @@ var Dashboard = require("./components/Dashboard.react.js");
 React.render((
   <Router>
     <Route path="app" path="/" component={App}>
+      <IndexRoute component={Dashboard} />
       <Route path="sign_up" component={SignUp}/>
       <Route path="sign_out" component={SignOut}/>
       <Route path="sign_in" component={SignIn}/>

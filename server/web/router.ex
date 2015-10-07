@@ -28,6 +28,7 @@ defmodule PhoenixDemoApp.Router do
     delete "/logout", SessionController, :delete, as: :logout
 
     resources "/users", UserController
+    resources "/feeds", FeedController
   end
 
 

@@ -10,7 +10,6 @@ module.exports = React.createClass({
   },
   render() {
     var userNodes = this.state.user.map(function (user) {
-      console.log(user);
       return (
         <User name={user.name}></User>
       );

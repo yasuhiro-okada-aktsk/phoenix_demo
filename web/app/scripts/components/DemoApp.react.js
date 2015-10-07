@@ -32,7 +32,7 @@ module.exports = React.createClass({
               <li><Link to="sign_in">Sign in</Link></li>
             )}
             {this.state.loggedIn ? (
-              <div></div>
+              ''
             ) : (
               <li><Link to="sign_up">Sign up</Link></li>
             )}
