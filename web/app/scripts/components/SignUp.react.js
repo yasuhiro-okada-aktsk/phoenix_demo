@@ -50,7 +50,7 @@ var SignUpBox = React.createClass({
                 </div>
 
                 <div className="form-group">
-                    <input type="submit" value="Post" className="btn btn-primary"/>
+                    <input type="submit" value="Sign up" className="btn btn-primary"/>
                 </div>
             </form>
         );

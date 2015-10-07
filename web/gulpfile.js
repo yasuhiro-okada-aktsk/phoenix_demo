@@ -233,4 +233,4 @@ gulp.task('connect', function() {
     });
 });
 
-gulp.task('dev', ['connect', `watch`]);
+gulp.task('dev', ['connect', 'watch']);
