@@ -5,6 +5,9 @@ module.exports = {
     SIGN_UP: null,
     LOG_IN: null,
     LOG_OUT: null,
+
+    FEED_ADD: null,
+
     SHOW_ERROR: null
     })
 };

@@ -21,11 +21,9 @@ defmodule PhoenixDemoApp.Api.V1.FeedController do
     case Repo.insert(changeset) do
       {:ok, rss_feed} ->
         conn
-#       |> put_status(:created)
-#        |> put_resp_header("location", feed_path(conn, :show, feed))
-#        |> render("show.json", feed: feed)
-        |> put_status(500)
-        |> json feed
+        |> put_status(:created)
+        |> put_resp_header("location", feed_path(conn, :show, feed))
+        |> render("show.json", feed: feed)
       {:error, changeset} ->
         conn
         |> put_status(:unprocessable_entity)

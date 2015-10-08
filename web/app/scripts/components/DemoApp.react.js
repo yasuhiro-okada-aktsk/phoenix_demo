@@ -5,6 +5,15 @@ var Router = require('react-router');
 var ReactRouter = require('react-router')
 var Link = ReactRouter.Link;
 
+var Bootstrap = require('react-bootstrap');
+var Navbar = Bootstrap.Navbar;
+var NavBrand = Bootstrap.NavBrand;
+var CollapsibleNav = Bootstrap.CollapsibleNav;
+var Nav = Bootstrap.Nav;
+var NavItem = Bootstrap.NavItem;
+var NavDropdown = Bootstrap.NavDropdown;
+var MenuItem = Bootstrap.MenuItem;
+
 var AuthStore = require('../stores/AuthStore');
 
 module.exports = React.createClass({
@@ -22,23 +31,31 @@ module.exports = React.createClass({
   render: function () {
     return (
       <div>
-        <div className="header">
-          <ul className="nav nav-pills pull-right">
-            <li><Link to="/">Dashboard</Link></li>
-            <li><Link to="user_list">User List</Link></li>
+        <Navbar toggleNavKey={0}>
+          <NavBrand>Phoenix Demo</NavBrand>
+          <CollapsibleNav eventKey={0}> {/* This is the eventKey referenced */}
+            <Nav navbar>
+              <NavItem eventKey={1} href="#">Dashboard</NavItem>
+              <NavDropdown eventKey={2} title="Feed" id="collapsible-nav-dropdown">
+                <MenuItem eventKey="1" href="#/feed/">Feed</MenuItem>
+                <MenuItem eventKey="2" href="#/feed/create">Create</MenuItem>
+              </NavDropdown>
+              <NavItem eventKey={1} href="#/user_list">User list</NavItem>
+            </Nav>
             {this.state.loggedIn ? (
-              <li><Link to="sign_out">Sign out</Link></li>
+              <Nav navbar right>
+                <NavItem eventKey={1} href="#/sign_out">Sign out</NavItem>
+              </Nav>
             ) : (
-              <li><Link to="sign_in">Sign in</Link></li>
+              <Nav navbar right>
+                <NavItem eventKey={2} href="#/sign_in">Log in</NavItem>
+                <NavItem eventKey={3} href="#/sign_up">Sign up</NavItem>
+              </Nav>
             )}
-            {this.state.loggedIn ? (
-              ''
-            ) : (
-              <li><Link to="sign_up">Sign up</Link></li>
-            )}
-          </ul>
-          <h3 className="text-muted">phoenix_demo_web</h3>
-        </div>
+
+          </CollapsibleNav>
+        </Navbar>
+
         <div>
           {this.props.children}
         </div>

@@ -31,5 +31,6 @@ defmodule PhoenixDemoApp.RssFeed do
   def create_changeset(model, params) do
     model
     |> cast(params, ~w(feed_url title), ~w(feed_id subtitle summary link author image updated))
+    |> unique_constraint(:feed_url)
   end
 end

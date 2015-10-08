@@ -1,5 +1,4 @@
 var AuthActionCreators = require('../actions/AuthActionCreators');
-
 var AuthStore = require('../stores/AuthStore');
 
 var SignIn = React.createClass({
@@ -45,7 +44,7 @@ var SignIn = React.createClass({
   },
 
   _onChange: function () {
-    $(location).attr('href', "/");
+    $(location).attr('href', "#");
   }
 });
 
