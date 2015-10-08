@@ -18,8 +18,7 @@ defmodule PhoenixDemoApp.Mixfile do
   # Type `mix help compile.app` for more information.
   def application do
     [mod: {PhoenixDemoApp, []},
-     applications: [:phoenix, :phoenix_html, :cowboy, :logger,
-                    :phoenix_ecto, :mariaex, :httpoison]]
+     applications: [:phoenix, :phoenix_html, :cowboy, :logger, :phoenix_ecto, :mariaex, :httpoison, :timex, :tzdata]]
   end
 
   # Specifies which paths to compile per environment.
@@ -39,6 +38,8 @@ defmodule PhoenixDemoApp.Mixfile do
      {:comeonin, "~> 1.2.2"},
      {:httpoison, "~> 0.7.4"},
      {:feeder_ex, ">= 0.0.0"},
+     {:timex, "~> 0.19.5"},
+     {:timex_ecto, "~> 0.5.0"},
      {:cowboy, "~> 1.0"}]
   end
 

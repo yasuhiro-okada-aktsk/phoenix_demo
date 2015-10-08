@@ -14,7 +14,9 @@ defmodule PhoenixDemoApp.Api.V1.FeedController do
 
   def create(conn, %{"feed_url" => feed_url}) do
     feed = PhoenixDemoApp.RssFetcher.fetch(feed_url)
-    changeset = RssFeed.create_changeset(%RssFeed{}, feed_url, feed)
+    params = Map.put(Map.delete(feed, :__struct__), :feed_url, feed_url)
+    params = %{ params | :updated => elem(Timex.DateFormat.parse(params.updated, "{ISO}"), 1) }
+    changeset = RssFeed.create_changeset(%RssFeed{}, params)
 
     case Repo.insert(changeset) do
       {:ok, rss_feed} ->

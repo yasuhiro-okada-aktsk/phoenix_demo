@@ -5,14 +5,14 @@ defmodule PhoenixDemoApp.RssFeed do
 
   schema "rss_feeds" do
     field :feed_url, :string
-    field :feed_id, :integer
+    field :feed_id, :string
     field :title, :string
     field :subtitle, :string
     field :summary, :string
     field :link, :string
     field :author, :string
     field :image, :string
-    field :updated, Ecto.DateTime
+    field :updated, Timex.Ecto.DateTime
 
     timestamps
   end
@@ -28,13 +28,7 @@ defmodule PhoenixDemoApp.RssFeed do
     |> cast(params, @required_fields, @optional_fields)
   end
 
-  def create_changeset(model, feed_url, feed) do
-    params = %{
-      "feed_url" => feed_url,
-      "title" => feed.title
-    }
-
-
+  def create_changeset(model, params) do
     model
     |> cast(params, ~w(feed_url title), ~w(feed_id subtitle summary link author image updated))
   end
