@@ -10,7 +10,8 @@ defmodule PhoenixDemoApp.Api.V1.FeedController do
   plug :scrub_params, "id" when action in [:update]
 
   def index(conn, _params) do
-    feeds = Repo.all(RssFeed)
+    feeds = RssFeed |> Repo.all |> Repo.preload [:entries]
+
     render(conn, "index.json", feeds: feeds)
   end
 

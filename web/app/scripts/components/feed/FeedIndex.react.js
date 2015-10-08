@@ -45,6 +45,7 @@ var Feed = React.createClass({
         <div>
           <Button onClick={this._onBtnRefresh}><Glyphicon glyph="refresh" />Refresh</Button>
         </div>
+        <EntryList entries={this.props.feed.entries} />
       </div>
     );
   },
@@ -53,5 +54,42 @@ var Feed = React.createClass({
     Api.putFeeds(this.props.feed.id, function(result) {
       console.log(result)
     })
+  }
+});
+
+var EntryList = React.createClass({
+  render: function() {
+    var entryList = this.props.entries.map(function (entry) {
+      return (
+        <Entry entry={entry}/>
+      );
+    });
+    return(
+      <div>
+        {entryList}
+      </div>
+    );
+  }
+});
+
+var Entry = React.createClass({
+  render: function () {
+    return (
+      <div>
+        <h2>
+          {this.props.entry.title}
+        </h2>
+
+        <div>
+          {this.props.entry.subtitle}
+        </div>
+        <div>
+          {this.props.entry.summary}
+        </div>
+        <div>
+          <a href={this.props.entry.link}>{this.props.entry.link}</a>
+        </div>
+      </div>
+    );
   }
 });
