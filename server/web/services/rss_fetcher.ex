@@ -1,7 +1,11 @@
 defmodule PhoenixDemoApp.RssFetcher do
   @moduledoc false
 
+  require Logger
+
   def fetch(url) do
+    Logger.error url
+
     case HTTPoison.get(url) do
 
       {:ok, %HTTPoison.Response{status_code: 200, body: body}} ->

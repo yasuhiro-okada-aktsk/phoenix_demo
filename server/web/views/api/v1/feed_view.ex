@@ -12,7 +12,8 @@ defmodule PhoenixDemoApp.Api.V1.FeedView do
   end
 
   def render("feed.json", %{feed: feed}) do
-    %{feed_url: feed.feed_url,
+    %{id: feed.id,
+      feed_url: feed.feed_url,
       feed_id: feed.feed_id,
       title: feed.title,
       subtitle: feed.subtitle,

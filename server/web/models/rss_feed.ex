@@ -14,21 +14,15 @@ defmodule PhoenixDemoApp.RssFeed do
     field :image, :string
     field :updated, Timex.Ecto.DateTime
 
+    has_many :entries, PhoenixDemoApp.RssEntry
+
     timestamps
   end
 
   @required_fields ~w(feed_url)
   @optional_fields ~w()
 
-  @doc """
-  deprecated
-  """
-  def changeset(model, params \\ :empty) do
-    model
-    |> cast(params, @required_fields, @optional_fields)
-  end
-
-  def create_changeset(model, params) do
+  def changeset(model, params) do
     model
     |> cast(params, ~w(feed_url title), ~w(feed_id subtitle summary link author image updated))
     |> unique_constraint(:feed_url)
