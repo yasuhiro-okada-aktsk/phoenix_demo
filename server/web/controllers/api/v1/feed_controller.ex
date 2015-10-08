@@ -6,7 +6,8 @@ defmodule PhoenixDemoApp.Api.V1.FeedController do
   alias PhoenixDemoApp.RssFeed
   alias PhoenixDemoApp.RssEntry
 
-  plug :scrub_params, "feed_url" when action in [:create, :update]
+  plug :scrub_params, "feed_url" when action in [:create]
+  plug :scrub_params, "id" when action in [:update]
 
   def index(conn, _params) do
     feeds = Repo.all(RssFeed)

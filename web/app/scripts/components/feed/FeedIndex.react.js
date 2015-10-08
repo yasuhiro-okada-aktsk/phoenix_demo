@@ -1,3 +1,7 @@
+var Bootstrap = require('react-bootstrap');
+var Button = Bootstrap.Button;
+var Glyphicon = Bootstrap.Glyphicon;
+
 var Api = require('../../apis/FeedApi');
 
 module.exports = React.createClass({
@@ -38,7 +42,16 @@ var Feed = React.createClass({
         <div>
           {this.props.feed.summary}
         </div>
+        <div>
+          <Button onClick={this._onBtnRefresh}><Glyphicon glyph="refresh" />Refresh</Button>
+        </div>
       </div>
     );
+  },
+  _onBtnRefresh: function(e) {
+    console.log("refresh")
+    Api.putFeeds(this.props.feed.id, function(result) {
+      console.log(result)
+    })
   }
 });
