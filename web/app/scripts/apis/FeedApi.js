@@ -13,5 +13,19 @@ module.exports = {
         alert(err)
       }
     });
+  },
+
+  getFeeds: function (cb) {
+    $.ajax({
+      url: '/api/v1/feeds',
+      dataType: 'json',
+      cache: false,
+      success: function (data) {
+        cb(data);
+      },
+      error: function (xhr, status, err) {
+        alert(err)
+      }
+    });
   }
 };

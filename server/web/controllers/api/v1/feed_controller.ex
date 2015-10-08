@@ -14,16 +14,19 @@ defmodule PhoenixDemoApp.Api.V1.FeedController do
 
   def create(conn, %{"feed_url" => feed_url}) do
     feed = PhoenixDemoApp.RssFetcher.fetch(feed_url)
-    params = Map.put(Map.delete(feed, :__struct__), :feed_url, feed_url)
-    params = %{ params | :updated => elem(Timex.DateFormat.parse(params.updated, "{ISO}"), 1) }
+    params =  Map.delete(feed, :__struct__) |> Map.put(:feed_url, feed_url) |> Map.put(:feed_id, feed.id)
+    if params.updated do
+      params = %{ params | :updated => elem(Timex.DateFormat.parse(params.updated, "{ISO}"), 1) }
+    else
+      params = Map.delete(params, :updated)
+    end
     changeset = RssFeed.create_changeset(%RssFeed{}, params)
 
     case Repo.insert(changeset) do
       {:ok, rss_feed} ->
         conn
         |> put_status(:created)
-        |> put_resp_header("location", feed_path(conn, :show, feed))
-        |> render("show.json", feed: feed)
+        |> render("show.json", feed: rss_feed)
       {:error, changeset} ->
         conn
         |> put_status(:unprocessable_entity)
