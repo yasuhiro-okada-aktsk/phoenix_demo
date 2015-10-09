@@ -3,6 +3,7 @@
   "cowboy": {:hex, :cowboy, "1.0.3"},
   "cowlib": {:hex, :cowlib, "1.0.1"},
   "decimal": {:hex, :decimal, "1.1.0"},
+  "dogma": {:hex, :dogma, "0.0.9"},
   "ecto": {:hex, :ecto, "1.0.4"},
   "feeder": {:hex, :feeder, "1.4.7"},
   "feeder_ex": {:hex, :feeder_ex, "0.0.2"},

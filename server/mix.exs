@@ -40,6 +40,7 @@ defmodule PhoenixDemoApp.Mixfile do
      {:feeder_ex, ">= 0.0.0"},
      {:timex, "~> 0.19.5"},
      {:timex_ecto, "~> 0.5.0"},
+     {:dogma, "~> 0.0", only: :dev},
      {:cowboy, "~> 1.0"}]
   end
 
