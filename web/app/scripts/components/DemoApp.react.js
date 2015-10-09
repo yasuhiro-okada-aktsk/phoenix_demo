@@ -1,7 +1,4 @@
-'use strict';
-
-//import React from 'react'
-//import { Router, Route, Link } from 'react-router'
+import React from 'react'
 
 var Router = require('react-router');
 var ReactRouter = require('react-router');
@@ -9,7 +6,7 @@ var Link = ReactRouter.Link;
 
 var AuthStore = require('../stores/AuthStore');
 
-module.exports = React.createClass({
+export default React.createClass({
   getInitialState() {
     return {
       loggedIn: AuthStore.isLoggedIn()

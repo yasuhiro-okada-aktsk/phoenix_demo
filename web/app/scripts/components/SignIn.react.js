@@ -1,9 +1,9 @@
-'use strict';
+import React from 'react'
 
 var AuthActionCreators = require('../actions/AuthActionCreators');
 var AuthStore = require('../stores/AuthStore');
 
-var SignIn = React.createClass({
+export default React.createClass({
   getInitialState() {
     return {
     }
@@ -49,5 +49,3 @@ var SignIn = React.createClass({
     $(location).attr('href', "#");
   }
 });
-
-module.exports = SignIn;

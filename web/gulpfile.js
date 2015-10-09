@@ -8,6 +8,8 @@ var path = require('path');
 // Load plugins
 var $ = require('gulp-load-plugins')();
 var browserify = require('browserify');
+var babelify = require('babelify');
+var uglify = require('uglifyify')
 var watchify = require('watchify');
 var source = require('vinyl-source-stream'),
 
@@ -48,7 +50,8 @@ var bundler = watchify(browserify({
     insertGlobals: true,
     cache: {},
     packageCache: {},
-    fullPaths: true
+    fullPaths: true,
+    transform: [babelify]
 }));
 
 bundler.on('update', rebundle);
@@ -75,9 +78,6 @@ gulp.task('buildScripts', function() {
         .pipe(gulp.dest('dist/scripts'));
 });
 
-
-
-
 gulp.task('jade', function() {
     return gulp.src('app/template/*.jade')
         .pipe($.jade({
@@ -85,8 +85,6 @@ gulp.task('jade', function() {
         }))
         .pipe(gulp.dest('dist'));
 });
-
-
 
 // HTML
 gulp.task('html', function() {

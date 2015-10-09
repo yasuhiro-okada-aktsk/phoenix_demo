@@ -1,9 +1,9 @@
-'use strict';
+import React from 'react'
 
 var FeedActionCreators = require('../../actions/FeedActionCreators');
 var FeedStore = require('../../stores/FeedStore');
 
-module.exports = React.createClass({
+export default React.createClass({
   getInitialState() {
     return {
     }

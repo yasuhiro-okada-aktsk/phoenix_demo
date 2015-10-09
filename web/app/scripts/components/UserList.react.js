@@ -1,9 +1,9 @@
-'use strict';
+import React from 'react'
 
 var AuthStore = require('../stores/AuthStore');
 var Api = require('../apis/UserApi');
 
-module.exports = React.createClass({
+export default React.createClass({
   getInitialState: function () {
     return {user: []};
   },

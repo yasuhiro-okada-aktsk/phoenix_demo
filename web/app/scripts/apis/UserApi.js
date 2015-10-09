@@ -2,7 +2,7 @@
 
 var AuthStore = require('../stores/AuthStore');
 
-module.exports = {
+export default  {
   getUsers: function (cb) {
     $.ajax({
       url: '/api/v1/users',

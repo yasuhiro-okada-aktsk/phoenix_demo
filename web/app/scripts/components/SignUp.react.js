@@ -1,6 +1,6 @@
-'use strict';
+import React from 'react'
 
-var SignUpBox = React.createClass({
+export default React.createClass({
     handleSubmit: function (e) {
         e.preventDefault();
         var name = React.findDOMNode(this.refs.name).value.trim();
@@ -54,5 +54,3 @@ var SignUpBox = React.createClass({
         );
     }
 });
-
-module.exports = SignUpBox;

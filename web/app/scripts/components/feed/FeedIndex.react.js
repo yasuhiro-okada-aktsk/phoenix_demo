@@ -1,8 +1,8 @@
-'use strict';
+import React from 'react'
 
 var Api = require('../../apis/FeedApi');
 
-module.exports = React.createClass({
+export default React.createClass({
   getInitialState: function () {
     return {feeds: []};
   },

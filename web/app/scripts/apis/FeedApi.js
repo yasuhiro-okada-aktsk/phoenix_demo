@@ -1,7 +1,7 @@
 'use strict';
 
-module.exports = {
-  postFeed: function (url, cb) {
+export default  {
+  postFeed: (url, cb) => {
     $.ajax({
       url: '/api/v1/feeds',
       method: 'POST',
@@ -17,7 +17,7 @@ module.exports = {
     });
   },
 
-  getFeeds: function (cb) {
+  getFeeds: cb => {
     $.ajax({
       url: '/api/v1/feeds',
       dataType: 'json',
@@ -31,7 +31,7 @@ module.exports = {
     });
   },
 
-  putFeeds: function(id, cb) {
+  putFeeds: (id, cb) => {
     $.ajax({
       url: '/api/v1/feeds/' + id,
       method: 'PUT',

@@ -2,7 +2,7 @@
 
 var AuthActionCreators = require('../actions/AuthActionCreators');
 
-module.exports = {
+export default  {
   logIn: function (user) {
     $.ajax({
       url: "/api/v1/login",

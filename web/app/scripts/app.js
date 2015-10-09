@@ -1,23 +1,18 @@
-'use strict';
-
-var React = window.React = require('react');
-var ReactDOM = window.ReactDOM = require('react-dom');
-var ReactRouter = require('react-router');
-var Router = ReactRouter.Router;
-var Route = ReactRouter.Route;
-var IndexRoute = ReactRouter.IndexRoute;
+import React from 'react'
+import ReactDOM from "react-dom"
+import { Router, Route, IndexRoute, Link } from 'react-router'
 
 var createBrowserHistory = require('history/lib/createBrowserHistory');
 
-var App = require("./components/DemoApp.react.js");
-var SignUp = require("./components/SignUp.react.js");
-var SignIn = require("./components/SignIn.react.js");
-var SignOut = require("./components/SignOut.react.js");
-var UserList = require("./components/UserList.react.js");
-var Dashboard = require("./components/Dashboard.react.js");
+import App from "./components/DemoApp.react.js";
+import SignUp from "./components/SignUp.react.js";
+import SignIn from "./components/SignIn.react.js";
+import SignOut from "./components/SignOut.react.js";
+import UserList from "./components/UserList.react.js";
+import Dashboard from "./components/Dashboard.react.js";
 
-var FeedIndex = require("./components/feed/FeedIndex.react.js");
-var FeedAdd = require("./components/feed/FeedAdd.react.js");
+import FeedIndex from "./components/feed/FeedIndex.react.js";
+import FeedAdd from "./components/feed/FeedAdd.react.js";
 
 // history={createBrowserHistory()}
 ReactDOM.render((
