@@ -12,6 +12,10 @@ defmodule PhoenixDemoApp.Api.V1.FeedView do
     render_one(feed, FeedView, "feed_full.json")
   end
 
+  def render("update.json", %{feed: feed}) do
+    render_one(feed, FeedView, "feed_compact.json")
+  end
+
   def render("feed_compact.json", %{feed: feed}) do
     %{id: feed.id,
       feed_url: feed.feed_url,

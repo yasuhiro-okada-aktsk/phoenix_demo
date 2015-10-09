@@ -65,7 +65,7 @@ defmodule PhoenixDemoApp.Api.V1.FeedController do
           update_entries(conn, rss_feed, feed.entries)
           conn
           |> put_status(:created)
-          |> render("show.json", feed: rss_feed)
+          |> render("update.json", feed: rss_feed)
         {:error, changeset} ->
           conn
           |> put_status(:unprocessable_entity)
