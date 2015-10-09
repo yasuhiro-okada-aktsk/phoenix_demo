@@ -1,3 +1,5 @@
+'use strict';
+
 var Bootstrap = require('react-bootstrap');
 var Button = Bootstrap.Button;
 var Glyphicon = Bootstrap.Glyphicon;
@@ -76,9 +78,9 @@ var Entry = React.createClass({
   render: function () {
     return (
       <div>
-        <h2>
+        <h3>
           {this.props.entry.title}
-        </h2>
+        </h3>
 
         <div>
           {this.props.entry.subtitle}

@@ -1,3 +1,5 @@
+'use strict';
+
 var FeedActionCreators = require('../../actions/FeedActionCreators');
 var FeedStore = require('../../stores/FeedStore');
 

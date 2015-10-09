@@ -1,3 +1,5 @@
+'use strict';
+
 var AuthStore = require('../stores/AuthStore');
 var Api = require('../apis/UserApi');
 

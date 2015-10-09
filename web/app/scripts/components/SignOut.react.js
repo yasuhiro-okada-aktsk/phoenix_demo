@@ -1,3 +1,5 @@
+'use strict';
+
 var AuthActionCreators = require('../actions/AuthActionCreators');
 
 module.exports = React.createClass({

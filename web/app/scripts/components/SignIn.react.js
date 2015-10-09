@@ -1,3 +1,5 @@
+'use strict';
+
 var AuthActionCreators = require('../actions/AuthActionCreators');
 var AuthStore = require('../stores/AuthStore');
 
