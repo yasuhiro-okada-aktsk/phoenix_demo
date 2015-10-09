@@ -4,17 +4,8 @@
 //import { Router, Route, Link } from 'react-router'
 
 var Router = require('react-router');
-var ReactRouter = require('react-router')
+var ReactRouter = require('react-router');
 var Link = ReactRouter.Link;
-
-var Bootstrap = require('react-bootstrap');
-var Navbar = Bootstrap.Navbar;
-var NavBrand = Bootstrap.NavBrand;
-var CollapsibleNav = Bootstrap.CollapsibleNav;
-var Nav = Bootstrap.Nav;
-var NavItem = Bootstrap.NavItem;
-var NavDropdown = Bootstrap.NavDropdown;
-var MenuItem = Bootstrap.MenuItem;
 
 var AuthStore = require('../stores/AuthStore');
 
@@ -33,30 +24,41 @@ module.exports = React.createClass({
   render: function () {
     return (
       <div>
-        <Navbar toggleNavKey={0}>
-          <NavBrand>Phoenix Demo</NavBrand>
-          <CollapsibleNav eventKey={0}> {/* This is the eventKey referenced */}
-            <Nav navbar>
-              <NavItem eventKey={1} href="#">Dashboard</NavItem>
-              <NavDropdown eventKey={2} title="Feed" id="collapsible-nav-dropdown">
-                <MenuItem eventKey="1" href="#/feed/">Feed</MenuItem>
-                <MenuItem eventKey="2" href="#/feed/create">Create</MenuItem>
-              </NavDropdown>
-              <NavItem eventKey={1} href="#/user_list">User list</NavItem>
-            </Nav>
-            {this.state.loggedIn ? (
-              <Nav navbar right>
-                <NavItem eventKey={1} href="#/sign_out">Sign out</NavItem>
-              </Nav>
-            ) : (
-              <Nav navbar right>
-                <NavItem eventKey={2} href="#/sign_in">Log in</NavItem>
-                <NavItem eventKey={3} href="#/sign_up">Sign up</NavItem>
-              </Nav>
-            )}
+        <nav className="navbar navbar-default">
+          <div className="container-fluid">
+            <div className="navbar-header">
+              <a className="navbar-brand" href="#">Phoenix Demo</a>
+            </div>
 
-          </CollapsibleNav>
-        </Navbar>
+            <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+              <ul className="nav navbar-nav">
+                <li><Link to="#">Dashboard</Link></li>
+
+                <li className="dropdown">
+                  <a className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                     aria-expanded="false">Feed <span className="caret"></span></a>
+                  <ul className="dropdown-menu">
+                    <li><Link to="/feed">List</Link></li>
+                    <li><Link to="/feed/create">Add</Link></li>
+                  </ul>
+                </li>
+
+                <li><Link to="/user_list">User list</Link></li>
+              </ul>
+
+              {this.state.loggedIn ? (
+                <ul className="nav navbar-nav navbar-right">
+                  <li><Link to="/sign_out">Sign out</Link></li>
+                </ul>
+              ) : (
+                <ul className="nav navbar-nav navbar-right">
+                  <li><Link to="/sign_in">Log in</Link></li>
+                  <li><Link to="/sign_up">Sign up</Link></li>
+                </ul>
+              )}
+            </div>
+          </div>
+        </nav>
 
         <div>
           {this.props.children}

@@ -1,9 +1,5 @@
 'use strict';
 
-var Bootstrap = require('react-bootstrap');
-var Button = Bootstrap.Button;
-var Glyphicon = Bootstrap.Glyphicon;
-
 var Api = require('../../apis/FeedApi');
 
 module.exports = React.createClass({
@@ -45,14 +41,15 @@ var Feed = React.createClass({
           {this.props.feed.summary}
         </div>
         <div>
-          <Button onClick={this._onBtnRefresh}><Glyphicon glyph="refresh" />Refresh</Button>
+          <button onClick={this._onBtnRefresh} className="btn btn-default">
+            <span className="glyphicon glyphicon-refresh" /> Refresh</button>
         </div>
         <EntryList entries={this.props.feed.entries} />
       </div>
     );
   },
   _onBtnRefresh: function(e) {
-    console.log("refresh")
+    console.log("refresh");
     Api.putFeeds(this.props.feed.id, function(result) {
       console.log(result)
     })

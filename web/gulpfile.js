@@ -3,9 +3,7 @@
 var gulp = require('gulp');
 var del = require('del');
 
-
 var path = require('path');
-
 
 // Load plugins
 var $ = require('gulp-load-plugins')();
@@ -28,7 +26,7 @@ gulp.task('moveCss',['clean'], function(){
   // the base option sets the relative root for the set of files,
   // preserving the folder structure
   gulp.src(['./app/styles/**/*.css'], { base: './app/styles/' })
-  .pipe(gulp.dest('dist/styles'));
+    .pipe(gulp.dest('dist/styles'));
 });
 
 gulp.task('sass', function() {
@@ -146,7 +144,7 @@ gulp.task('moveLibraries',['clean'], function(){
   // the base option sets the relative root for the set of files,
   // preserving the folder structure
   gulp.src(['./app/scripts/**/*.js'], { base: './app/scripts/' })
-  .pipe(gulp.dest('dist/scripts'));
+    .pipe(gulp.dest('dist/scripts'));
 });
 
 
@@ -195,12 +193,13 @@ gulp.task('watch', ['html', 'fonts', 'bundle'], function() {
     gulp.watch(['app/styles/**/*.scss', 'app/styles/**/*.css'], ['styles', 'scripts', reload]);
 
 
-        // Watch .jade files
-        gulp.watch('app/template/**/*.jade', ['jade', 'html', reload]);
+    // Watch .jade files
+    gulp.watch('app/template/**/*.jade', ['jade', 'html', reload]);
 
 
     // Watch image files
     gulp.watch('app/images/**/*', reload);
+    gulp.watch('app/fonts/**/*', reload);
 });
 
 // Build
@@ -218,19 +217,19 @@ var connect = require('gulp-connect');
 var proxy = require('proxy-middleware');
 var url = require('url');
 
-gulp.task('connect', function() {
-    connect.server({
-        root: ['dist'],
-        port: 9000,
-        livereload: true,
-        middleware: function(connect, o) {
-            return [ (function() {
-                var options = url.parse('http://localhost:4000/api');
-                options.route = '/api';
-                return proxy(options);
-            })() ];
-        }
-    });
+gulp.task('connect', function () {
+  connect.server({
+    root: ['dist'],
+    port: 9000,
+    livereload: true,
+    middleware: function (connect, o) {
+      return [(function () {
+        var options = url.parse('http://localhost:4000/api');
+        options.route = '/api';
+        return proxy(options);
+      })()];
+    }
+  });
 });
 
 gulp.task('dev', ['connect', 'watch']);

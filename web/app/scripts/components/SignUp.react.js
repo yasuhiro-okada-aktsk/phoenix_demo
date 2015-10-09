@@ -7,14 +7,10 @@ var SignUpBox = React.createClass({
         var email = React.findDOMNode(this.refs.email).value.trim();
         var password = React.findDOMNode(this.refs.password).value.trim();
         if (!name || !email || !password) {
-            alert('empty!')
+            alert('empty!');
             return;
         }
         this.signUp({user: {name: name, email: email, password: password}});
-        //React.findDOMNode(this.refs.name).value = '';
-        //React.findDOMNode(this.refs.email).value = '';
-        //React.findDOMNode(this.refs.password).value = '';
-        return;
     },
     signUp: function (user) {
         $.ajax({

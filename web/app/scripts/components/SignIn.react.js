@@ -35,8 +35,8 @@ var SignIn = React.createClass({
   },
   _onSubmit: function (e) {
     e.preventDefault();
-    var email = React.findDOMNode(this.refs.email).value.trim();
-    var password = React.findDOMNode(this.refs.password).value.trim();
+    var email = this.refs.email.value.trim();
+    var password = this.refs.password.value.trim();
     if (!email || !password) {
       alert('empty!');
       return;
