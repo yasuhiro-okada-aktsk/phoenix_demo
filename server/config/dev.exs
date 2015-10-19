@@ -40,3 +40,14 @@ config :phoenix_demo_app, PhoenixDemoApp.Repo,
   database: "phoenix_demo_app_dev",
   hostname: "localhost",
   pool_size: 10
+
+config :dogma,
+  rule_set: Dogma.RuleSet.All,
+
+  exclude: [
+    ~r(\Alib/vendor/),
+  ],
+
+  additional_config: [
+    [LineLength: [max_length: 120]],
+  ]

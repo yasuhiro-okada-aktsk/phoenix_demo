@@ -36,14 +36,3 @@ config :guardian, Guardian,
   verify_issuer: true,
   secret_key: "t5-s0EO:Km/k@>VH9)buk+<IM&A3qkM1NN6P^xjn`%mFq6i5~-3[1TRI180}6s,",
   serializer: PhoenixDemoApp.GuardianSerializer
-
-config :dogma,
-  rule_set: Dogma.RuleSet.All,
-
-  exclude: [
-    ~r(\Alib/vendor/),
-  ],
-
-  additional_config: [
-    [LineLength: [max_length: 120]],
-  ]

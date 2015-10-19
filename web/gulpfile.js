@@ -42,8 +42,6 @@ gulp.task('sass', function() {
         .pipe($.size());
 });
 
-
-
 var bundler = watchify(browserify({
     entries: [sourceFile],
     debug: true,
@@ -209,7 +207,7 @@ gulp.task('build', ['html', 'buildBundle', 'images', 'fonts', 'extras'], functio
 });
 
 // Default task
-gulp.task('default', ['clean', 'build'  , 'jest'  ]);
+gulp.task('default', ['clean', 'build', 'jest']);
 
 var connect = require('gulp-connect');
 var proxy = require('proxy-middleware');

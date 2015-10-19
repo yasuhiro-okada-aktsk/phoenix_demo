@@ -16,7 +16,7 @@ import FeedAdd from "./components/feed/FeedAdd.react.js";
 
 // history={createBrowserHistory()}
 ReactDOM.render((
-  <Router >
+  <Router history={createBrowserHistory()}>
     <Route path="/" component={App}>
       <IndexRoute component={Dashboard}/>
       <Route path="feed" component={FeedIndex}/>
